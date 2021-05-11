@@ -1,0 +1,29 @@
+version: "3.8"
+
+services: 
+    postgres:
+        container_name: "caseritos-postgres"
+        image: postgres
+        ports: 
+            - 5432:5432
+        environment: 
+            - POSTGRES_DB=laravel
+            - POSTGRES_PASSWORD=secret
+        volumes: 
+            - postgres_db:/var/lib/postgresql/data
+
+    laravel:
+        container_name: "caseritos-laravel"
+        build: 
+            context: ./
+        working_dir: /app
+        command: php artisan serve --host 0.0.0.0
+        depends_on: 
+            - postgres
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./:/app
+
+volumes: 
+    postgres_db:
