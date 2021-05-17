@@ -1,4 +1,6 @@
-<x-guest-layout>
+@extends('layouts.app')
+
+@section('body')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -46,9 +48,9 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <x-underline-link href="{{ route('login') }}">
                     {{ __('Already registered?') }}
-                </a>
+                </x-underline-link>
 
                 <x-button class="ml-4">
                     {{ __('Register') }}
@@ -56,4 +58,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+@endsection

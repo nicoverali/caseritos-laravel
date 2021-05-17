@@ -1,4 +1,7 @@
-<x-guest-layout>
+@extends('layouts.app')
+
+@section('body')
+
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -24,12 +27,24 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" :value="__('Password')" class="inline-block float-left"/>
 
-                <x-input id="password" class="block mt-1 w-full"
+                @if (Route::has('password.request'))
+                    <x-underline-link href="{{ route('password.request') }}" class="text-sm float-right">
+                        {{ __('Forgot your password?') }}
+                    </x-underline-link>
+                @endif
+
+                <x-input id="password" class="inline-block mt-1 w-full"
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
+
+{{--                @if (Route::has('password.request'))--}}
+{{--                    <x-underline-link href="{{ route('password.request') }}" class="text-sm block mt-4 sm:mt-2">--}}
+{{--                        {{ __('Forgot your password?') }}--}}
+{{--                    </x-underline-link>--}}
+{{--                @endif--}}
             </div>
 
             <!-- Remember Me -->
@@ -41,11 +56,10 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+
+                <x-underline-link href="{{route('register')}}" class="mt-2">
+                    Don't have an account?
+                </x-underline-link>
 
                 <x-button class="ml-3">
                     {{ __('Log in') }}
@@ -53,4 +67,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+@endsection
