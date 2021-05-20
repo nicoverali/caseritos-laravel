@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profiles\ClientProfile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
-class RegisteredUserController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display the registration view.
@@ -45,10 +46,21 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->assignRole('client');
+        $this->assignClientProfile($user);
+
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    private function assignClientProfile(User $user){
+        $profile = ClientProfile::create();
+        $assignment = $user->role('client')->assignment;
+
+        $assignment->profile()->associate($profile);
+        $assignment->save();
     }
 }

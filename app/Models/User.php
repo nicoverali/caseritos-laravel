@@ -63,6 +63,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Gets the Role model if any that has the given name and is assigned to this User
+     *
+     * @param string $role
+     * @return ProfileRole
+     */
+    public function role(string $role) : ProfileRole
+    {
+        return $this->roles->firstWhere('name', $role);
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->traitRoles()
