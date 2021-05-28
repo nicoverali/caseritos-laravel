@@ -13,6 +13,11 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <style> {{-- This is used for hiding Alipine objects when page is loaded --}}
+            [x-cloak] {
+                display: none !important;
+            }
+        </style>
         @yield('styles')
 
     </head>

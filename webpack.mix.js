@@ -20,6 +20,6 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
 mix.browserSync({
     proxy: 'http://localhost:8000/',
     files: [
-        "resources/**/*.blade.php",
+        "resources/**/*.php",
     ]
 })

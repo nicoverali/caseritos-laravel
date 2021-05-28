@@ -4,13 +4,11 @@
 
     @if (Route::has('login'))
         @auth
-            <?php $navLinks = ['Dashboard' => '/dashboard']?>
+            <?php $navLinks = ['Home' => '/home']?>
         @else
             <?php $navLinks = ['Log in' => route('login'), 'Register' => route('register')] ?>
         @endauth
-        <nav>
-            <x-guest.nav :links="$navLinks"/>
-        </nav>
+        <x-guest.nav :links="$navLinks"/>
     @endif
 
     <div class="my-auto bg-gray-100 dark:bg-gray-900 sm:items-center pb-4 sm:pt-0">
