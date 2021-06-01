@@ -28,6 +28,7 @@ module.exports = {
             borderWidth: ['hover', 'group-hover'],
             padding: ['group-hover'],
             borderRadius: ['first', 'last'],
+            borderWidth: ['first', 'last'],
             textAlign: ['first', 'last']
         },
     },

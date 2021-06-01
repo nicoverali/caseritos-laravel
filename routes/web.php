@@ -21,4 +21,8 @@ Route::get('/home', function () {
     return view('home');
 })->middleware(['auth'])->name('home');
 
+Route::get('/orders', function () {
+    return view('orders');
+})->middleware(['auth'])->name('orders');
+
 require __DIR__.'/auth.php';
