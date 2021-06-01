@@ -7,16 +7,16 @@
 
         @include('includes.sm-banner')
 
-        <h1 class="text-3xl mt-6 px-6">Your orders</h1>
+        <h1 class="text-3xl mt-6 px-6">{{__('pages/orders.your_orders')}}</h1>
 
         <div class="p-6">
             <table class="w-full">
                 <thead>
                     <tr class="text-red-400 h-12">
-                        <th class="text-left">Name and seller</th>
-                        <th>Date</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
+                        <th class="text-left">{{__('pages/orders.name_and_seller')}}</th>
+                        <th>{{__('pages/orders.date')}}</th>
+                        <th>{{__('pages/orders.quantity')}}</th>
+                        <th>{{__('pages/orders.price')}}</th>
                     </tr>
                 </thead>
                 <tbody class="pt-2">

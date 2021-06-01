@@ -2,7 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@tailwind base{
+@layer base{
     body {
         @apply h-screen;
         min-height: -webkit-fill-available;
@@ -12,7 +12,7 @@
     }
 }
 
-@tailwind utilities{
+@layer utilities{
     @variants responsive {
         .top-translate-center {
             top: 50%;

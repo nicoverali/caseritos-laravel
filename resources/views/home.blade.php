@@ -5,7 +5,7 @@
 
     <x-app-container>
         <section class="w-full bg-red-400 px-6 py-12 text-center bg-home-hero bg-cover">
-            <h1 class="text-white font-bold text-3xl">{{__('home.hero')}}</h1>
+            <h1 class="text-white font-bold text-3xl">{{__('pages/home.hero')}}</h1>
             <div class="mx-auto relative sm:w-3/4 mt-4">
                 <x-input type="search" placeholder="{{__('search.products')}}" class="w-full pl-12"/>
                 <x-svg-o-search class="w-5 h-5 opacity-30 absolute left-4 top-translate-center"/>
@@ -16,7 +16,7 @@
 
             <div class="flex flex-col sm:flex-row mt-6 justify-between">
                 <div class="flex justify-between sm:justify-start items-baseline w-full sm:w-auto">
-                    <h1 class="text-2xl font-bold sm:mr-4">{{__('home.food')}}</h1>
+                    <h1 class="text-2xl font-bold sm:mr-4">{{__('pages/home.food')}}</h1>
                     <x-simple-dropdown selected="{{__('search.best_rated')}}">
                         <x-simple-dropdown-link href="#">{{__('search.best_rated')}}</x-simple-dropdown-link>
                         <x-simple-dropdown-link href="#">{{__('search.trending')}}</x-simple-dropdown-link>
