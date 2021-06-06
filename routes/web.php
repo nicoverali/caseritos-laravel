@@ -33,4 +33,8 @@ Route::get('/product', function () {
     return view('product');
 })->middleware(['auth'])->name('product');
 
+Route::get('/edit-product', function () {
+    return view('edit-product');
+})->middleware(['auth'])->name('edit-product');
+
 require __DIR__.'/auth.php';
