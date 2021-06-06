@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'published' => 'Published'
+    'published' => 'Published',
+    'stock' => 'Stock',
 ];
