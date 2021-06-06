@@ -30,7 +30,7 @@
                     <p class="text-2xl sm:hidden"><span class="text-red-400">$</span>500</p>
                     <div class="text-center inline-block">
                         <p class="mt-1 mr-2 inline">{{__('pages/product.quantity')}}: </p>
-                        <input class="shadow-inner border-gray-100 rounded w-24 text-center" type="number" min="0" value="1" oninput="validity.valid||(value='');"/>
+                        <x-input class="w-24 pl-5 text-center" type="number" min="0" value="1" oninput="validity.valid||(value='');"/>
                         <p class="opacity-60 text-left">{{__('pages/product.on_stock')}}: 15</p>
                     </div>
                     <button class="w-full py-4 mt-4 sm:mt-0 sm:ml-6 text-center text-white bg-red-400 rounded sm:w-48">{{__('pages/product.buy')}}</button>
