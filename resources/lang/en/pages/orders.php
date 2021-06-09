@@ -5,5 +5,6 @@ return [
     'name_and_seller' => 'Name and seller',
     'date' => 'Date',
     'quantity' => 'Quantity',
-    'price' => 'Price'
+    'price' => 'Price',
+    'total' => 'Total',
 ];
