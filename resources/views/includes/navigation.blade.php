@@ -92,6 +92,9 @@
             <x-responsive-nav-link :href="route('products')" :active="request()->routeIs('products')">
                 {{ __('pages/names.products') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
+                {{ __('pages/names.sales') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
