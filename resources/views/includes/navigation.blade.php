@@ -113,7 +113,13 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('logout')">
+                <x-responsive-nav-link href="#">
+                    <div class="text-red-400 hover:text-red-600 transition-colors">
+                        <p class="inline-block ">{{__('navigation.sell_products')}}</p>
+                        <x-svg-o-light-bulb class="inline-block stroke-current w-6 h -6 -mt-1"/>
+                    </div>
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="#">
                     {{ __('navigation.request_admin') }}
                 </x-responsive-nav-link>
                 <!-- Authentication -->
