@@ -25,6 +25,10 @@ Route::get('/orders', function () {
     return view('orders');
 })->middleware(['auth'])->name('orders');
 
+Route::get('/sales', function () {
+    return view('sales');
+})->middleware(['auth'])->name('sales');
+
 Route::get('/products', function () {
     return view('products');
 })->middleware(['auth'])->name('products');
