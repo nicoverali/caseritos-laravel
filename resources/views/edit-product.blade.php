@@ -5,7 +5,7 @@
 
     <x-app-container>
 
-        @include('includes.sm-banner')
+        <x-banner/>
 
         <x-back-header class="px-6 mt-6">{{__('pages/edit-product.edit_product')}}</x-back-header>
 

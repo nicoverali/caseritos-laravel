@@ -5,11 +5,11 @@
 
     <x-app-container>
 
-        @include('includes.sm-banner')
+        <x-banner/>
 
         <x-back-header class="px-6 mt-6"></x-back-header>
 
-        <div class="p-6 flex flex-col sm:flex-row">
+        <div class="px-6 py-12 flex flex-col sm:flex-row">
 
 
             <div class="sm:hidden">

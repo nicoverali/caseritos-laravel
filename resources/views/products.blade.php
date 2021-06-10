@@ -5,7 +5,7 @@
 
     <x-app-container>
 
-        @include('includes.sm-banner')
+        <x-banner/>
 
         <div class="flex px-6 mt-6 items-baseline justify-between">
             <h1 class="text-3xl">{{__('pages/products.your_products')}}</h1>

@@ -5,7 +5,7 @@
 
     <x-app-container>
 
-        @include('includes.sm-banner')
+        <x-banner/>
 
         <h1 class="text-3xl mt-6 px-6">{{__('pages/orders.your_orders')}}</h1>
 
