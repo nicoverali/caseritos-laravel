@@ -53,4 +53,8 @@ Route::get('/admin/users', function () {
     return view('users');
 })->middleware(['auth'])->name('users');
 
+Route::get('/client/{id}', function () {
+    return view('client');
+})->middleware(['auth'])->name('client');
+
 require __DIR__.'/auth.php';
