@@ -11,7 +11,7 @@
 
         <div class="p-6">
             <table class="w-full">
-                <thead class="hidden sm:table-header-group">
+                <thead class="hidden sm:table-header-group uppercase">
                     <tr class="text-red-400 h-12 text-left">
                         <th>{{__('pages/sales.name')}}</th>
                         <th class="hidden md:table-cell">{{__('pages/sales.date')}}</th>
