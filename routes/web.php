@@ -53,6 +53,10 @@ Route::get('/admin/users', function () {
     return view('users');
 })->middleware(['auth'])->name('users');
 
+Route::get('/admin/edit-user/{id}', function () {
+    return view('edit-user');
+})->middleware(['auth'])->name('edit-user');
+
 Route::get('/client/{id}', function () {
     return view('client');
 })->middleware(['auth'])->name('client');

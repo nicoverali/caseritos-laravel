@@ -9,7 +9,7 @@
 
         <x-back-header class="px-6 mt-6"></x-back-header>
 
-        <div class="px-6 py-12 flex flex-col sm:flex-row">
+        <div class="px-6 py-4 sm:py-12 flex flex-col sm:flex-row">
 
 
             <div class="sm:hidden">
