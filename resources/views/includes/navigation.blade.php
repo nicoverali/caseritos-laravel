@@ -12,32 +12,40 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @role('client')
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('pages/names.home') }}
                     </x-nav-link>
                     <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
                         {{ __('pages/names.orders') }}
                     </x-nav-link>
+                    @endrole
+                    @role('seller')
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                         {{ __('pages/names.products') }}
                     </x-nav-link>
                     <x-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
                         {{ __('pages/names.sales') }}
                     </x-nav-link>
+                    @endrole
+                    @role('admin')
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('pages/names.users') }}
                     </x-nav-link>
+                    @endrole
                 </div>
             </div>
 
             <!-- Right side -->
             <div class="hidden md:flex md:items-center md:ml-6">
+                @unlessrole('seller')
                 <a href="#" class="text-red-400 hover:text-red-600 transition-colors">
                     <div class="mr-6 p-2">
                         <x-svg-o-light-bulb class="inline-block stroke-current w-6 h -6 -mt-1"/>
                         <p class="inline-block ">{{__('navigation.sell_products')}}</p>
                     </div>
                 </a>
+                @endunlessrole
 
                 <!-- Settings Dropdown -->
                 <x-dropdown align="right" width="48">
@@ -54,9 +62,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @unlessrole('admin')
                         <x-dropdown-link :href="route('logout')">
                             {{ __('navigation.request_admin') }}
                         </x-dropdown-link>
+                        @endunlessrole
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -86,18 +96,27 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden">
         <div class="sm:hidden pt-2 pb-3 space-y-1">
+            @role('client')
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('pages/names.home') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
                 {{ __('pages/names.orders') }}
             </x-responsive-nav-link>
+            @endrole
+            @role('seller')
             <x-responsive-nav-link :href="route('products')" :active="request()->routeIs('products')">
                 {{ __('pages/names.products') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
                 {{ __('pages/names.sales') }}
             </x-responsive-nav-link>
+            @endrole
+            @role('admin')
+            <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                {{ __('pages/names.users') }}
+            </x-responsive-nav-link>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->
@@ -116,15 +135,19 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                @unlessrole('seller')
                 <x-responsive-nav-link href="#">
                     <div class="text-red-400 hover:text-red-600 transition-colors">
                         <p class="inline-block ">{{__('navigation.sell_products')}}</p>
                         <x-svg-o-light-bulb class="inline-block stroke-current w-6 h -6 -mt-1"/>
                     </div>
                 </x-responsive-nav-link>
+                @endunlessrole
+                @unlessrole('admin')
                 <x-responsive-nav-link href="#">
                     {{ __('navigation.request_admin') }}
                 </x-responsive-nav-link>
+                @endunlessrole
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
