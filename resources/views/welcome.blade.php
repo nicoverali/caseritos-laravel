@@ -1,4 +1,4 @@
-@extends('layouts.welcome')
+@extends('layouts.app-bg')
 
 @section('body')
 
@@ -10,7 +10,7 @@
                     <a href="{{route('login')}}" class="mt-16 text-lg hover:bg-gray-50 border border-gray-100 shadow hover:shadow-md rounded-md py-4 w-3/4 text-center uppercase font-semibold transition-all">
                         Log in
                     </a>
-                    <a href="{{route('register')}}" class="mt-6 text-lg bg-red-400 hover:bg-red-500 text-white border border-red-500 shadow hover:shadow-md rounded-md py-4 w-3/4 text-center uppercase font-semibold transition-all">
+                    <a href="{{route('register')}}" class="mt-6 text-lg bg-gray-900 hover:bg-gray-800 text-white border border-gray-800 shadow hover:shadow-md rounded-md py-4 w-3/4 text-center uppercase font-semibold transition-all">
                         Register
                     </a>
                 </div>
