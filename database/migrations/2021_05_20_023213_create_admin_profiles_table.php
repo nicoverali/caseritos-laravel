@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdministratorProfilesTable extends Migration
+class CreateAdminProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAdministratorProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('administrator_profiles', function (Blueprint $table) {
+        Schema::create('admin_profiles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateAdministratorProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administrator_profiles');
+        Schema::dropIfExists('admin_profiles');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Profiles\AdministratorProfile;
+use App\Models\Profiles\AdminProfile;
 use App\Models\Profiles\ClientProfile;
 use App\Models\Profiles\SellerProfile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -62,7 +62,7 @@ class ProfileRole extends SpatieRole
      */
     public function adminProfiles(): HasManyThrough
     {
-        return $this->hasManyThrough(AdministratorProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasManyThrough(AdminProfile::class, ...self::PROFILES_REL_ARGS);
     }
 
 

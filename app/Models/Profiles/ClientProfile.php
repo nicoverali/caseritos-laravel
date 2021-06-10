@@ -13,4 +13,5 @@ class ClientProfile extends BaseProfile
 {
     use HasFactory;
 
+    protected $fillable = ['phone', 'address'];
 }

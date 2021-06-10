@@ -15,6 +15,7 @@ class CreateSellerProfilesTable extends Migration
     {
         Schema::create('seller_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('store_name');
             $table->timestamps();
         });
     }

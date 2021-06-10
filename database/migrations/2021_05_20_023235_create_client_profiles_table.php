@@ -15,6 +15,8 @@ class CreateClientProfilesTable extends Migration
     {
         Schema::create('client_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('phone');
+            $table->string('address');
             $table->timestamps();
         });
     }

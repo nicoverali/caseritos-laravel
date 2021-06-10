@@ -47,20 +47,12 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole('client');
-        $this->assignClientProfile($user);
+        $user->assignClientProfile(ClientProfile::factory()->create());
 
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
-    }
-
-    private function assignClientProfile(User $user){
-        $profile = ClientProfile::create();
-        $assignment = $user->role('client')->assignment;
-
-        $assignment->profile()->associate($profile);
-        $assignment->save();
     }
 }

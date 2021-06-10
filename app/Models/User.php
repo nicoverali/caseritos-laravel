@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Profiles\AdministratorProfile;
+use App\Models\Profiles\AdminProfile;
 use App\Models\Profiles\ClientProfile;
+use App\Models\Profiles\HasProfiles;
 use App\Models\Profiles\SellerProfile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,8 @@ class User extends Authenticatable
     use HasRoles {
         roles as protected traitRoles;
     }
+
+    use HasProfiles;
 
     /**
      * The attributes that are mass assignable.
@@ -110,7 +113,7 @@ class User extends Authenticatable
      */
     public function adminProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(AdministratorProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(AdminProfile::class, ...self::PROFILES_REL_ARGS);
     }
 
 
