@@ -45,6 +45,10 @@ Route::get('/become-a-seller', function () {
     return view('register-seller');
 })->middleware(['auth'])->name('become-a-seller');
 
+Route::get('/register-client', function () {
+    return view('register-client');
+})->middleware(['auth'])->name('register-client');
+
 Route::get('/request-admin', function () {
     return view('request-admin');
 })->middleware(['auth'])->name('request-admin');
