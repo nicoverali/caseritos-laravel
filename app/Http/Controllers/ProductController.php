@@ -25,6 +25,19 @@ class ProductController extends Controller
     }
 
     /**
+     * Display a listing of the resource but only those
+     * own by the current user.
+     *
+     * @return Application|Factory|View|Response
+     */
+    public function sellerIndex(Request $request)
+    {
+        $seller = $request->user()->sellerProfile;
+        return view('products')
+            ->with('products', $seller->products);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View

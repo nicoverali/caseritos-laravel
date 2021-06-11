@@ -7,9 +7,8 @@ Route::get('/sales', function () {
     return view('sales');
 })->name('sales');
 
-Route::get('/products', function () {
-    return view('products');
-})->name('products');
+Route::get('/products', [ProductController::class, 'sellerIndex'])
+    ->name('products');
 
 Route::get('create/products', [ProductController::class, 'create'])
     ->name('create-product');
