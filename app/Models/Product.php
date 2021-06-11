@@ -13,8 +13,16 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id', 'owner_id'];
+
+    // The picture attribute is stored as binary, so whenever we retrieve it we have to convert it
+    private $pictureAsString;
+
     public function getPictureAttribute($pictureStream){
-        return stream_get_contents($pictureStream);
+        if (!$this->pictureAsString){
+            $this->pictureAsString =  stream_get_contents($pictureStream);
+        }
+        return $this->pictureAsString;
     }
 
     public function owner(): BelongsTo
