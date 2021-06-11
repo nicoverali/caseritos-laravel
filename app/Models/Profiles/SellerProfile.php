@@ -2,16 +2,16 @@
 
 namespace App\Models\Profiles;
 
-use App\Models\ModelRolePivot;
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SellerProfile extends BaseProfile
 {
     use HasFactory;
 
-
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class, 'owner_id');
+    }
 }

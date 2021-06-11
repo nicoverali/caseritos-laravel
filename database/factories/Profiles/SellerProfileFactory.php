@@ -22,7 +22,7 @@ class SellerProfileFactory extends Factory
     public function definition()
     {
         return [
-            'store_name' => $this->faker->company,
+            'store_name' => $this->faker->unique()->company,
         ];
     }
 }
