@@ -93,7 +93,8 @@ class User extends Authenticatable
      */
     public function clientProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(ClientProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(ClientProfile::class, ...self::PROFILES_REL_ARGS)
+            ->where('model_has_roles.role_profile_type', ClientProfile::class);
     }
 
     /**
@@ -103,7 +104,8 @@ class User extends Authenticatable
      */
     public function sellerProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(SellerProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(SellerProfile::class, ...self::PROFILES_REL_ARGS)
+                ->where('model_has_roles.role_profile_type', SellerProfile::class);
     }
 
     /**
@@ -113,7 +115,9 @@ class User extends Authenticatable
      */
     public function adminProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(AdminProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(AdminProfile::class, ...self::PROFILES_REL_ARGS)
+            ->where('model_has_roles.role_profile_type', AdminProfile::class);
+
     }
 
 
