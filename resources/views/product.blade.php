@@ -17,9 +17,8 @@
                 <p class="mt-1 text-sm opacity-60">{{$product->owner->store_name}}</p>
             </div>
 
-{{--            <div class="h-full relative">--}}
-            <img class="h-64 w-full sm:h-96 sm:w-3/6 hidden object-cover sm:block" src="{{$product->picture}}" alt=""/>
-{{--            </div>--}}
+            <img class="h-64 mt-4 sm:mt-0 w-full sm:h-96 sm:w-3/6 object-cover sm:block" src="{{$product->picture}}" alt=""/>
+
             <div class="mt-4 sm:ml-24">
                 <div class="hidden sm:flex sm:flex-col">
                     <h1 class="mt-4 sm:mt-0 text-2xl ">{{$product->name}}</h1>
@@ -27,15 +26,18 @@
                 </div>
                 <p class="hidden text-2xl mt-4 sm:block"><span class="text-red-400">$</span>{{$product->price}}</p>
                 <p class="mt-6">{{$product->description}}</p>
-                <div class="mt-8 flex flex-wrap items-center justify-between sm:justify-start sm:justify-items-start">
-                    <p class="text-2xl sm:hidden"><span class="text-red-400">$</span>{{$product->price}}</p>
-                    <div class="text-center inline-block">
-                        <p class="mt-1 mr-2 inline">{{__('pages/product.quantity')}}: </p>
-                        <x-input class="w-24 pl-5 text-center" type="number" min="0" max="{{$product->stock}}" value="1" oninput="validity.valid||(value='');"/>
-                        <p class="opacity-60 text-left">{{__('pages/product.on_stock')}}: {{$product->stock}}</p>
+                <form action="" method="post">
+                    <div class="mt-8 flex flex-wrap items-center justify-between sm:justify-start sm:justify-items-start">
+                        <p class="text-2xl sm:hidden"><span class="text-red-400">$</span>{{$product->price}}</p>
+                            <div class="text-center inline-block">
+                                <p class="mt-1 mr-2 inline">{{__('pages/product.quantity')}}: </p>
+                                <x-input class="w-24 pl-5 text-center" name="quantity" type="number" min="0" max="{{$product->stock}}" value="1" oninput="validity.valid||(value='');"/>
+                                <p class="opacity-60 text-left">{{__('pages/product.on_stock')}}: {{$product->stock}}</p>
+                            </div>
+                            @csrf
+                            <button class="w-full py-4 mt-4 sm:mt-0 sm:ml-6 text-center text-white bg-red-400 rounded sm:w-48">{{__('pages/product.buy')}}</button>
                     </div>
-                    <button class="w-full py-4 mt-4 sm:mt-0 sm:ml-6 text-center text-white bg-red-400 rounded sm:w-48">{{__('pages/product.buy')}}</button>
-                </div>
+                </form>
             </div>
         </div>
     </x-app-container>

@@ -12,6 +12,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['client_id'];
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(ClientProfile::class);

@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/sales', function () {
-    return view('sales');
-})->name('sales');
+Route::get('/sales', [OrderController::class, 'sellerIndex'])
+    ->name('sales');
 
 Route::get('/products', [ProductController::class, 'sellerIndex'])
     ->name('products');

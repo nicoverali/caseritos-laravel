@@ -22,7 +22,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'quantity' => $this->faker->numberBetween(0,5),
+            'quantity' => $this->faker->numberBetween(1,5),
             'price' => $this->faker->numberBetween(100,1500),
         ];
     }

@@ -82,6 +82,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if ($product->stock < 1){
+            abort(404);
+        }
+
         return view('product')
             ->with('product', $product);
     }
