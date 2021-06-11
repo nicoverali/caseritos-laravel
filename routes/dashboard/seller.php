@@ -25,6 +25,5 @@ Route::post('edit/products/{product}', [ProductController::class, 'update'])
 Route::post('delete/products/{product}', [ProductController::class, 'destroy'])
     ->name('edit-product-delete');
 
-Route::get('/client/{id}', function () {
-    return view('client');
-})->name('client');
+Route::get('/sales/{order}/client', [OrderController::class, 'showClient'])
+    ->name('sale-client');

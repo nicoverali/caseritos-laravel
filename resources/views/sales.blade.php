@@ -53,7 +53,7 @@
                         <td class="py-4 hidden sm:table-cell font-semibold"><span class="text-red-400">$</span>{{$order->price}}</td>
                         <td class="py-4 hidden sm:table-cell font-semibold"><span class="text-red-400">$</span>{{$order->quantity*$order->price}}</td>
                         <td class="hidden sm:table-cell">
-                            <a href="#" class="p-2 rounded-md shadow-sm border border-gray-100 text-red-400 inline-block">
+                            <a href="{{route('sale-client', $order)}}" class="p-2 rounded-md shadow-sm border border-gray-100 text-red-400 inline-block">
                                 <x-svg-s-user class="w-4 h-4"/>
                             </a>
                         </td>

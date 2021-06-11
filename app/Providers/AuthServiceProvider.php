@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Policies\EditOwnedProductOnly;
+use App\Policies\ShowClientToSellerOnly;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Product::class => EditOwnedProductOnly::class,
+        Order::class => ShowClientToSellerOnly::class
     ];
 
     /**

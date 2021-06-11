@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -34,6 +35,15 @@ class OrderController extends Controller
         $seller = $request->user()->sellerProfile;
         return view('sales')
             ->with('orders', $seller->orders);
+    }
+
+    public function showClient(Order $order, Request $request){
+        if ($request->user()->cannot('viewClient', $order)){
+            abort(403, "Not allow");
+        }
+
+        return view('client')
+            ->with('client', $order->client);
     }
 
     /**
