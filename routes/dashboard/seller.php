@@ -11,6 +11,12 @@ Route::get('/products', function () {
     return view('products');
 })->name('products');
 
+Route::get('create/products', [ProductController::class, 'create'])
+    ->name('create-product');
+
+Route::post('create/products', [ProductController::class, 'store'])
+    ->name('create-product-save');
+
 Route::get('edit/products/{product}', [ProductController::class, 'edit'])
     ->name('edit-product');
 

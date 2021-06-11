@@ -21,28 +21,44 @@ class ProductController extends Controller
     public function index()
     {
         return view('home')
-            ->with('products', Product::all());
+            ->with('products', Product::limit(15)->get());
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        //
+        return view('create-product');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return Application|Redirector|RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|max:255',
+            'picture' => 'required|image',
+            'description' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'stock' => 'required|numeric|gt:0'
+        ]);
+
+        $attributes['picture'] = $this->imageToBase64($attributes['picture']);
+        $request->user()->sellerProfile->products()->create($attributes);
+        return redirect(route('products'));
+    }
+
+    private function imageToBase64($image){
+        $type = $image->getMimeType();
+        $picture = utf8_encode(base64_encode(file_get_contents($image)));
+        return "data:$type;base64,$picture";
     }
 
     /**
