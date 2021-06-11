@@ -17,8 +17,9 @@
                 <p class="mt-1 text-sm opacity-60">{{$product->owner->store_name}}</p>
             </div>
 
-            <img class="mt-4 sm:mt-0 h-64 w-full sm:h-auto sm:object-cover sm:w-2/5" src="{{$product->picture}}" alt=""/>
-
+{{--            <div class="h-full relative">--}}
+            <img class="h-64 w-full sm:h-96 sm:w-3/6 hidden object-cover sm:block" src="{{$product->picture}}" alt=""/>
+{{--            </div>--}}
             <div class="mt-4 sm:ml-24">
                 <div class="hidden sm:flex sm:flex-col">
                     <h1 class="mt-4 sm:mt-0 text-2xl ">{{$product->name}}</h1>

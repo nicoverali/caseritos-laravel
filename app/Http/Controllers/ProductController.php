@@ -6,8 +6,10 @@ use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 
 class ProductController extends Controller
 {
@@ -59,11 +61,16 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Product $product
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function edit(Product $product)
+    public function edit(Product $product, Request $request)
     {
-        //
+        if ($request->user()->cannot('updateAndDelete', $product)){
+            abort(403);
+        }
+
+        return view('edit-product')
+            ->with('product', $product);
     }
 
     /**
@@ -71,21 +78,39 @@ class ProductController extends Controller
      *
      * @param Request $request
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Request $request, Product $product)
     {
-        //
+        if ($request->user()->cannot('updateAndDelete', $product)){
+            abort(403);
+        }
+
+        $attributes = $request->validate([
+            'name' => 'required|max:255',
+            'picture' => 'nullable|image',
+            'description' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'stock' => 'required|numeric|gt:0'
+        ]);
+
+        $product->update($attributes);
+        return redirect()->back()->with('product', $product);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Product $product
-     * @return Response
+     * @return Application|Redirector|RedirectResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Request $request)
     {
-        //
+        if ($request->user()->cannot('updateAndDelete', $product)){
+            abort(403);
+        }
+
+        $product->delete();
+        return redirect(route('products'));
     }
 }

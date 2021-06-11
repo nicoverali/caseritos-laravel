@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/sales', function () {
@@ -10,9 +11,14 @@ Route::get('/products', function () {
     return view('products');
 })->name('products');
 
-Route::get('/edit-product', function () {
-    return view('edit-product');
-})->name('edit-product');
+Route::get('edit/products/{product}', [ProductController::class, 'edit'])
+    ->name('edit-product');
+
+Route::post('edit/products/{product}', [ProductController::class, 'update'])
+    ->name('edit-product-save');
+
+Route::post('delete/products/{product}', [ProductController::class, 'destroy'])
+    ->name('edit-product-delete');
 
 Route::get('/client/{id}', function () {
     return view('client');

@@ -11,43 +11,52 @@
 
         <div class="p-6 flex flex-col sm:flex-row">
 
-            <img class="h-64 w-full sm:h-auto sm:w-3/6 hidden object-cover sm:block" src="https://thumbor.thedailymeal.com/xElyMCHUR1drRJYvuniWfcIGv1M=/870x565/filters:focal(895x584:896x585)/https://www.thedailymeal.com/sites/default/files/2020/07/13/maine-whoopie-pies.jpg" alt=""/>
+            <img class="h-64 w-full sm:h-auto sm:w-3/6 hidden object-cover sm:block" src="{{$product->picture}}" alt=""/>
 
-            <form class="sm:ml-16 flex-grow" action="#" method="post">
+            <form class="sm:ml-16 flex-grow" action="{{route('edit-product-save', $product->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div>
-                    <x-label for="title" :value="__('pages/edit-product.title')"/>
-                    <x-input id="title" class="w-full" type="text" name="title" required autofocus/>
+                    <x-label for="name" :value="__('pages/edit-product.title')"/>
+                    <x-input id="name" class="w-full" type="text" name="name" value="{{$product->name}}" required autofocus/>
                 </div>
-                <img class="mt-6 h-64 w-full sm:h-2/5 sm:w-2/5 sm:hidden" src="https://thumbor.thedailymeal.com/xElyMCHUR1drRJYvuniWfcIGv1M=/870x565/filters:focal(895x584:896x585)/https://www.thedailymeal.com/sites/default/files/2020/07/13/maine-whoopie-pies.jpg" alt=""/>
+                <img class="mt-6 h-64 w-full sm:h-2/5 sm:w-2/5 sm:hidden object-cover" src="{{$product->picture}}" alt=""/>
                 <div class="w-full mt-4">
-                    <input type="file" id="image" accept="image/*" class="hidden">
-                    <label for="image" class="block w-full py-4 text-center text-red-400 rounded border border-red-400 cursor-pointer
-                    hover:bg-red-400 hover:text-white">
-                        {{__('pages/edit-product.change_image')}}
-                        <x-svg-s-pencil class="inline ml-2 w-4 h-4"/>
+                    <input type="file" id="picture" name="picture" accept="image/*" class="hidden">
+                    <label for="picture" class="block w-full">
+                        <span role="button" aria-controls="filename" tabindex="0"
+                        class="block w-full py-4 text-center text-red-400 rounded border border-red-400 cursor-pointer hover:bg-red-400 hover:text-white">
+                            {{__('pages/edit-product.change_image')}}
+                            <x-svg-s-pencil class="inline ml-2 w-4 h-4"/>
+                        </span>
                     </label>
                 </div>
 
                 <div class="mt-4">
                     <x-label for="description" :value="__('pages/edit-product.description')"/>
-                    <x-textarea id="description" class="w-full h-48" type="text" name="description" required autofocus/>
+                    <x-textarea id="description" class="w-full h-48" type="text" name="description" required autofocus>
+                        {{$product->description}}
+                    </x-textarea>
                 </div>
                 <div class="flex w-full mt-4">
                     <div class="w-1/2 pr-4">
                         <x-label for="price" :value="__('pages/edit-product.price')"/>
-                        <x-input id="price" class="w-full" type="number" name="price" required autofocus/>
+                        <x-input id="price" class="w-full" type="number" name="price" value="{{$product->price}}" required autofocus/>
                     </div>
                     <div class="w-1/2 pl-4">
                         <x-label for="stock" :value="__('pages/edit-product.stock')"/>
-                        <x-input id="stock" class="w-full" type="number" name="stock" required autofocus/>
+                        <x-input id="stock" class="w-full" type="number" name="stock" value="{{$product->stock}}" required autofocus/>
                     </div>
                 </div>
-                <button type="submit" class="w-full py-4 mt-4 text-center text-white bg-red-400 rounded sm:w-48 hover:bg-red-300">
-                    {{__('pages/edit-product.save')}}
+                <button type="submit" class="w-full py-4 mt-4 text-center text-white bg-red-400 rounded sm:w-48 hover:bg-red-500 border border-red-400">
+                    {{__('misc.save')}}
+                </button>
+                <button type="submit" form="delete-form" class="w-full py-4 mt-4 lg:ml-4 text-center text-red-400 border border-red-400 rounded sm:w-48 hover:bg-red-400 hover:text-white">
+                    {{__('misc.delete')}}
                 </button>
             </form>
+            <form action="{{route('edit-product-delete', $product->id)}}" method="post" id="delete-form">@csrf</form>
         </div>
     </x-app-container>
+
 
 @endsection
