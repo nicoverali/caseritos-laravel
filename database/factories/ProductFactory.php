@@ -26,6 +26,7 @@ class ProductFactory extends Factory
 
         return [
             'name' => $this->faker->domainName(),
+            'description' => $this->faker->words(20, true),
             'picture' => $this->faker->foodPicture(),
             'stock' => $this->faker->numberBetween(0,100),
             'price' => $this->faker->numberBetween(100,1500),

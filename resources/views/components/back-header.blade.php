@@ -1,4 +1,4 @@
-@props(['href' => '#', 'arrowColor' => 'red-400'])
+@props(['href' => url()->previous(), 'arrowColor' => 'red-400'])
 
 <div {{$attributes->merge(['class' => "w-full text-".$arrowColor])}}>
     <a href="{{$href}}" class="inline-block">

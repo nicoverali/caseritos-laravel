@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('owner_id')->references('id')->on('seller_profiles');
             $table->binary('picture');
             $table->string('name');
+            $table->text('description');
             $table->integer('stock');
             $table->integer('price');
             $table->timestamps();
