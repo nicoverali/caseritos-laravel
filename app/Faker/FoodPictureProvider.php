@@ -16,7 +16,7 @@ class FoodPictureProvider extends Base
         $path = resource_path(self::$FAKES_PATH);
         self::$fakes = collect(scandir($path))->skip(2)
             ->map(function ($file) use ($path) { return $path.$file; })
-            ->map(function ($file) { return file_get_contents($file); });
+            ->map(function ($file) { return json_decode(file_get_contents($file), true); });
     }
 
     public static function foodPicture()

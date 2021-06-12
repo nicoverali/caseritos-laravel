@@ -25,7 +25,7 @@
                     <tr class=" border-b border-gray-50 first:border-t">
                         <td class="py-4">
                             <div class="flex items-top sm:items-center">
-                                <img class="w-24 h-24 sm:w-16 sm:h-16" src="{{$order->product->picture}}" alt="">
+                                <img class="w-24 h-24 sm:w-16 sm:h-16 object-cover" src="{{$order->product->thumbnail}}" alt="">
                                 <div class="ml-6 flex-grow flex flex-col">
                                     <p class="text-base font-semibold line-clamp-2">{{$order->product->name}}</p>
                                     <p class="sm:hidden">

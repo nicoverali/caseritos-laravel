@@ -15,14 +15,22 @@ class Product extends Model
 
     protected $guarded = ['id', 'owner_id'];
 
-    // The picture attribute is stored as binary, so whenever we retrieve it we have to convert it
+    // The picture and thumbnail attributes are stored as binary, so whenever we retrieve it we have to convert it
     private $pictureAsString;
+    private $thumbnailAsString;
 
     public function getPictureAttribute($pictureStream){
         if (!$this->pictureAsString){
             $this->pictureAsString =  stream_get_contents($pictureStream);
         }
         return $this->pictureAsString;
+    }
+
+    public function getThumbnailAttribute($thumbnailStream){
+        if (!$this->thumbnailAsString){
+            $this->thumbnailAsString =  stream_get_contents($thumbnailStream);
+        }
+        return $this->thumbnailAsString;
     }
 
     public function owner(): BelongsTo

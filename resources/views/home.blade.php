@@ -34,7 +34,7 @@
                 @foreach($products as $product)
                     <a href="{{route('product', [$product->id])}}">
                         <x-product-card
-                            :img="$product->picture"
+                            :img="$product->thumbnail"
                             :seller="$product->owner->store_name"
                             :title="$product->name"
                             :price="$product->price"

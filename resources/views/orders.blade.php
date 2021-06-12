@@ -24,7 +24,7 @@
                     @foreach($orders as $order)
                     <tr class=" border-b border-gray-50 first:border-t">
                         <td class="py-4 flex items-top sm:items-center">
-                            <img class="w-16 h-16 object-cover" src="{{$order->product->picture}}" alt="">
+                            <img class="w-16 h-16 object-cover" src="{{$order->product->thumbnail}}" alt="">
                             <div class="ml-6 flex-grow flex flex-col">
                                 <p class="text-base font-semibold line-clamp-2">{{$order->product->name}}</p>
                                 <div class="order-first sm:order-none flex justify-between">

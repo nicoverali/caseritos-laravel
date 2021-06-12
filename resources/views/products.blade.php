@@ -18,7 +18,7 @@
         <div class="p-6 grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             @foreach($products as $product)
             <a href="{{route('edit-product', $product->id)}}"><x-my-product-card
-                    img="{{$product->picture}}"
+                    img="{{$product->thumbnail}}"
                     title="{{$product->name}}"
                     price="{{$product->price}}"
                     publishedAt="{{$product->createdAt}}"

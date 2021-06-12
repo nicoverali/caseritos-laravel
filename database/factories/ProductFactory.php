@@ -23,11 +23,12 @@ class ProductFactory extends Factory
     public function definition()
     {
         $this->faker->addProvider(FoodPictureProvider::class);
-
+        $productFake = $this->faker->foodPicture();
         return [
             'name' => $this->faker->domainName(),
             'description' => $this->faker->words(20, true),
-            'picture' => $this->faker->foodPicture(),
+            'picture' => $productFake['image'],
+            'thumbnail' => $productFake['thumbnail'],
             'stock' => $this->faker->numberBetween(0,100),
             'price' => $this->faker->numberBetween(100,1500),
         ];
