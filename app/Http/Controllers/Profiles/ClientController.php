@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Profiles;
 
+use App\Faker\ClientProfilePictureProvider;
+use App\Helpers\ImageFileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Profiles\ClientProfile;
 use Illuminate\Contracts\Foundation\Application;
@@ -9,8 +11,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ClientController extends Controller
 {
@@ -39,10 +41,12 @@ class ClientController extends Controller
         $user = $request->user();
         if (!$user->hasRole('client')){
             $attributes = $request->validate([
+                'profile-picture' => 'nullable|image',
                 'phone' => 'required|max:255',
                 'address' => 'required|max:255',
             ]);
 
+            $this->addProfilePictureToAttributes($attributes, $user->name);
             $user->assignRole('client');
             $user->assignClientProfile(ClientProfile::create($attributes));
         }
@@ -62,37 +66,16 @@ class ClientController extends Controller
             ->with('client', $clientProfile);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param ClientProfile $clientProfile
-     * @return Response
-     */
-    public function edit(ClientProfile $clientProfile)
+    private function addProfilePictureToAttributes(array &$attributes, string $name)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param ClientProfile $clientProfile
-     * @return Response
-     */
-    public function update(Request $request, ClientProfile $clientProfile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param ClientProfile $clientProfile
-     * @return Response
-     */
-    public function destroy(ClientProfile $clientProfile)
-    {
-        //
+        if (array_key_exists('profile-picture', $attributes)){
+            $imageFile = $attributes['profile-picture'];
+            unset($attributes['profile-picture']);
+            $attributes['picture'] = ImageFileHelper::imageToBase64($imageFile);
+            $attributes['thumbnail'] = ImageFileHelper::thumbnail($imageFile);
+        } else {
+            $attributes['picture'] = ClientProfilePictureProvider::profilePicture($name);
+            $attributes['thumbnail'] = ClientProfilePictureProvider::profileThumbnail($name);
+        }
     }
 }

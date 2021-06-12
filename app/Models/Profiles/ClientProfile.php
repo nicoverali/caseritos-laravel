@@ -16,7 +16,7 @@ class ClientProfile extends BaseProfile
 
     protected $binaryImageAttributes = ['picture', 'thumbnail'];
 
-    protected $fillable = ['phone', 'address'];
+    protected $guarded = ['id'];
 
     public function orders() : HasMany
     {
