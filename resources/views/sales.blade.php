@@ -36,7 +36,7 @@
                                         </span>
                                     </p>
                                     <div class="mt-1 sm:hidden">
-                                        <a href="#" class="p-2 w-auto rounded-md shadow-sm border border-gray-100 text-red-400 inline-block">
+                                        <a href="{{route('sale-client', $order)}}" class="p-2 w-auto rounded-md shadow-sm border border-gray-100 text-red-400 inline-block">
                                             <x-svg-s-user class="w-4 h-4 -mt-1 inline align-middle"/>
                                             See buyer
                                         </a>
