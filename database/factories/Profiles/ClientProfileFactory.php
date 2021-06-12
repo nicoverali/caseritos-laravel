@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Profiles;
 
+use App\Faker\ClientProfilePictureProvider;
 use App\Models\Profiles\ClientProfile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,11 @@ class ClientProfileFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(ClientProfilePictureProvider::class);
+
         return [
+            'picture' => $this->faker->profilePicture(''),
+            'thumbnail' => $this->faker->profileThumbnail(''),
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
         ];

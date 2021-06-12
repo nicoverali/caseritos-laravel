@@ -10,7 +10,7 @@
         </x-banner>
         <div class="px-6 flex flex-col sm:flex-row relative">
             <img class="w-64 h-64 absolute sm:relative self-center sm:self-starttop-0 transform -translate-y-1/2 -mt-1/2 border-8 border-white shadow-md rounded-full"
-                 src="https://ui-avatars.com/api/?rounded=true&background=FF004&color=FFFFFF" alt="">
+                 src="{{$user->clientProfile->picture}}" alt="">
             <div class="sm:ml-16 w-full pb-16 pt-40 sm:pt-8 text-left sm:text-left">
                 <form class="w-full" action="{{route('edit-user-save',$user->id)}}" method="POST">
                     @csrf

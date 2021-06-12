@@ -22,7 +22,7 @@
                     <tr class=" border-b border-gray-50 first:border-t">
                         <td class="py-4 text-left ">
                             <div class="flex items-start sm:items-center">
-                                <img class="w-16 h-16" src="https://ui-avatars.com/api/?rounded=true&background=FF004&color=FFFFFF" alt="">
+                                <img class="w-16 h-16 rounded-full" src="{{$user->clientProfile->thumbnail}}" alt="">
                                 <div class="ml-6 flex flex-col">
                                     <div>
                                         <p class="text-base font-semibold">{{$user->name}}</p>

@@ -12,7 +12,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ClientProfile extends BaseProfile
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasBinaryImageAttributes;
+
+    protected $binaryImageAttributes = ['picture', 'thumbnail'];
 
     protected $fillable = ['phone', 'address'];
 

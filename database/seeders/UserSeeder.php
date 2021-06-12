@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Faker\ClientProfilePictureProvider;
 use App\Models\Profiles\AdminProfile;
 use App\Models\Profiles\ClientProfile;
 use App\Models\Profiles\SellerProfile;
 use App\Models\User;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -18,6 +21,8 @@ class UserSeeder extends Seeder
     private $KNOWN_SUPER_EMAIL = "pepe@super.com";
     private $KNOWN_PASSWORD = "secret";
 
+    private $faker;
+
     /**
      * Run the database seeds.
      *
@@ -25,61 +30,54 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $this->faker = new Generator();
+        $this->faker->addProvider(ClientProfilePictureProvider::class);
+
         $this->KNOWN_PASSWORD = Hash::make($this->KNOWN_PASSWORD);
-        $this->seedClients(50);
+        $this->seedClients(30);
         $this->seedSellers(15);
         $this->seedAdmin(5);
         $this->seedSuperUser();
     }
 
     private function seedClients(int $cant){
-        $clients = User::factory($cant)->create();
-        foreach ($clients as $client) {
-            $client->assignRole('client');
-            $client->assignClientProfile(ClientProfile::factory()->create());
-        }
-        User::factory()->create([
-            'email' => $this->KNOWN_CLIENT_EMAIL,
-            'password' => $this->KNOWN_PASSWORD
-        ])->assignRole('client')->assignClientProfile(ClientProfile::factory()->create());
+        $this->createUsers([], $cant, ['client']);
+        $this->createUsers(['email'=> $this->KNOWN_CLIENT_EMAIL, 'password' => $this->KNOWN_PASSWORD], 1, ['client']);
     }
 
     private function seedSellers(int $cant){
-        $sellers = User::factory($cant)->create();
-        foreach ($sellers as $seller) {
-            $seller->assignRole('seller');
-            $seller->assignSellerProfile(SellerProfile::factory()->create());
-        }
-        User::factory()->create([
-            'email' => $this->KNOWN_SELLER_EMAIL,
-            'password' => $this->KNOWN_PASSWORD
-        ])
-            ->assignRole('client')->assignClientProfile(ClientProfile::factory()->create())
-            ->assignRole('seller')->assignSellerProfile(SellerProfile::factory()->create());
+        $this->createUsers([], $cant, ['client', 'seller']);
+        $this->createUsers(['email'=> $this->KNOWN_SELLER_EMAIL, 'password' => $this->KNOWN_PASSWORD], 1, ['client', 'seller']);
     }
 
     private function seedAdmin(int $cant){
-        $admins = User::factory($cant)->create();
-        foreach ($admins as $admin) {
-            $admin->assignRole('admin');
-            $admin->assignAdminProfile(AdminProfile::factory()->create());
-        }
-        User::factory()->create([
-            'email' => $this->KNOWN_ADMIN_EMAIL,
-            'password' => $this->KNOWN_PASSWORD
-        ])
-            ->assignRole('client')->assignClientProfile(ClientProfile::factory()->create())
-            ->assignRole('admin')->assignAdminProfile(AdminProfile::factory()->create());
+        $this->createUsers([], $cant, ['client', 'admin']);
+        $this->createUsers(['email'=> $this->KNOWN_ADMIN_EMAIL, 'password' => $this->KNOWN_PASSWORD], 1, ['client', 'admin']);
     }
 
     private function seedSuperUser()
     {
-        User::factory()->create([
-            'email' => $this->KNOWN_SUPER_EMAIL,
-            'password' => $this->KNOWN_PASSWORD
-        ])
-        ->assignRole('client')->assignClientProfile(ClientProfile::factory()->create())
-        ->assignRole('seller')->assignSellerProfile(SellerProfile::factory()->create())
-        ->assignRole('admin')->assignAdminProfile(AdminProfile::factory()->create());
+        $this->createUsers(['email'=> $this->KNOWN_SUPER_EMAIL, 'password' => $this->KNOWN_PASSWORD], 1, ['client', 'seller', 'admin']);
+    }
+
+    private function createUsers($attributes, $cant, $roles){
+        $attributes = (new Collection($attributes))->whereNotNull()->toArray();
+        $users = User::factory($cant)->create($attributes);
+        foreach ($users as $user) {
+            foreach ($roles as $role){
+                $clientAttr = [
+                    'picture' => $this->faker->profilePicture($user->name),
+                    'thumbnail' => $this->faker->profileThumbnail($user->name),
+                ];
+                $user->assignRole($role);
+                switch ($role){
+                    case 'client': $user->assignClientProfile(ClientProfile::factory()->create($clientAttr));
+                        break;
+                    case 'seller': $user->assignSellerProfile(SellerProfile::factory()->create());
+                        break;
+                    case 'admin': $user->assignAdminProfile(AdminProfile::factory()->create());
+                }
+            }
+        }
     }
 }
