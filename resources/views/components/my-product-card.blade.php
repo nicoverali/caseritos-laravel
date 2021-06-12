@@ -1,6 +1,6 @@
 @props(['img', 'title', 'stars', 'reviewCount', 'price', 'publishedAt', 'stock'])
 
-<div class="h-32 p-4 shadow-sm border border-gray-150 rounded-md group flex sm:flex-col sm:h-auto">
+<div class="h-32 p-4 shadow-sm border border-gray-150 rounded-md group flex sm:flex-col sm:h-full ">
 
     {{--  IMAGE WITH HIDE BACKGROUND  --}}
     <div class="flex-shrink-0 w-24 h-full relative sm:w-full sm:h-48">

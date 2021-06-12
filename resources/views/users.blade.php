@@ -29,7 +29,7 @@
                                         <p class="opacity-60 overflow-ellipsis">{{$user->email}}</p>
                                     </div>
                                     <div class="sm:hidden mt-1">
-                                        <p class="opacity-60">{{__('pages/users.created_date')}}: {{$user->createdAt}}</p>
+                                        <p class="opacity-60">{{__('pages/users.created_date')}}: {{$user->created_at->diffForHumans()}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 </form>
                             </div>
                         </td>
-                        <td class="py-4 hidden sm:table-cell">13/05/2021</td>
+                        <td class="py-4 hidden sm:table-cell">{{$user->created_at->format("d/m/Y")}}</td>
                         <td class="text-right hidden sm:table-cell">
                             <a href="{{route('edit-user', $user->id)}}" class="p-2 rounded-md shadow-sm border border-gray-100 text-red-400 inline-block align-middle">
                                 <x-svg-o-pencil class="w-4 h-4"/>

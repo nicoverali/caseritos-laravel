@@ -21,7 +21,7 @@
                     img="{{$product->thumbnail}}"
                     title="{{$product->name}}"
                     price="{{$product->price}}"
-                    publishedAt="{{$product->createdAt}}"
+                    publishedAt="{{$product->created_at->format('d/m/Y')}}"
                     stock="{{$product->stock}}"/></a>
             @endforeach
 

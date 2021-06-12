@@ -23,13 +23,13 @@
                 <tbody class="pt-2">
                     @foreach($orders as $order)
                     <tr class=" border-b border-gray-50 first:border-t">
-                        <td class="py-4 flex items-top sm:items-center">
+                        <td class="py-4 flex items-top sm:items-center sm:max-w-sm sm:mr-0">
                             <img class="w-16 h-16 object-cover" src="{{$order->product->thumbnail}}" alt="">
                             <div class="ml-6 flex-grow flex flex-col">
                                 <p class="text-base font-semibold line-clamp-2">{{$order->product->name}}</p>
                                 <div class="order-first sm:order-none flex justify-between">
                                     <p class="text-sm line-clamp-1 pr-4">{{$order->product->owner->store_name}}</p>
-                                    <p class="sm:hidden text-sm opacity-60">14d</p>
+                                    <p class="sm:hidden text-sm opacity-60">{{$order->created_at->diffForHumans()}}</p>
                                 </div>
                                 <p class="sm:hidden">
                                     <span class="text-red-400">$</span>
@@ -41,7 +41,8 @@
                             </div>
                         </td>
                         <td class="py-4 hidden md:table-cell">
-                            13/05/2021
+                            {{$order->created_at->format("d/m/Y")}}
+                            <p class="text-sm opacity-60">{{$order->created_at->diffForHumans()}}</p>
                         </td>
                         <td class="py-4 hidden sm:table-cell">{{$order->quantity}}</td>
                         <td class="py-4 hidden sm:table-cell font-semibold"><span class="text-red-400">$</span>{{$order->price}}</td>
