@@ -6,10 +6,10 @@ use App\Models\Profiles\AdminProfile;
 use App\Models\Profiles\ClientProfile;
 use App\Models\Profiles\HasProfiles;
 use App\Models\Profiles\SellerProfile;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -35,6 +35,10 @@ class User extends Authenticatable
     }
 
     use HasProfiles;
+
+    use SoftDeletes, CascadeSoftDelete;
+    protected $cascadeDeletes = ['clientProfile', 'sellerProfile'];
+
 
     /**
      * The attributes that are mass assignable.

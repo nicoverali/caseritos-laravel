@@ -29,7 +29,8 @@ class BaseProfile extends Model
     public function user(): HasOneThrough
     {
         return $this->hasOneThrough(User::class, ModelRolePivot::class, 'role_profile_id', 'id', 'id', 'model_id')
-            ->where('model_has_roles.role_profile_type', static::class);;
+            ->where('model_has_roles.role_profile_type', static::class)
+            ->withTrashed();
     }
 
 }

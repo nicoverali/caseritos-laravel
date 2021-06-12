@@ -17,6 +17,7 @@ class CreateClientProfilesTable extends Migration
             $table->id();
             $table->string('phone');
             $table->string('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

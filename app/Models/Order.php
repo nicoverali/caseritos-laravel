@@ -16,7 +16,7 @@ class Order extends Model
 
     public function client(): BelongsTo
     {
-        return $this->belongsTo(ClientProfile::class);
+        return $this->belongsTo(ClientProfile::class)->withTrashed();
     }
 
     public function product(): BelongsTo

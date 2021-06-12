@@ -35,7 +35,7 @@ class Product extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(SellerProfile::class);
+        return $this->belongsTo(SellerProfile::class)->withTrashed();
     }
 
     public function orders(): HasMany

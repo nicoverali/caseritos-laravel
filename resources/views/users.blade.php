@@ -18,40 +18,46 @@
                     </tr>
                 </thead>
                 <tbody class="pt-2">
-                @foreach(range(0,10) as $i)
+                @foreach($users as $user)
                     <tr class=" border-b border-gray-50 first:border-t">
                         <td class="py-4 text-left ">
                             <div class="flex items-start sm:items-center">
                                 <img class="w-16 h-16" src="https://ui-avatars.com/api/?rounded=true&background=FF004&color=FFFFFF" alt="">
                                 <div class="ml-6 flex flex-col">
                                     <div>
-                                        <p class="text-base font-semibold">Juan Alberto Perez</p>
-                                        <p class="opacity-60 overflow-ellipsis">nicolasalevera98@gmail.com</p>
+                                        <p class="text-base font-semibold">{{$user->name}}</p>
+                                        <p class="opacity-60 overflow-ellipsis">{{$user->email}}</p>
                                     </div>
                                     <div class="sm:hidden mt-1">
-                                        <p class="opacity-60">{{__('pages/users.created_date')}}: 13/05/1998</p>
+                                        <p class="opacity-60">{{__('pages/users.created_date')}}: {{$user->createdAt}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="sm:hidden flex mt-4">
-                                <button class="py-2 flex-grow rounded-md shadow-sm border border-gray-100 text-red-400">
+                                <a href="{{route('edit-user', $user->id)}}" class="py-2 flex-grow rounded-md shadow-sm border border-gray-100 text-red-400 inline-block text-center">
                                     <x-svg-o-pencil class="w-4 h-4 inline-block"/>
                                     <p class="inline-block">{{__('misc.edit')}}</p>
-                                </button>
-                                <button class="ml-2 py-2 flex-grow rounded-md shadow-sm border border-gray-100 text-red-400">
-                                    <x-svg-o-trash class="w-4 h-4 inline-block"/>
-                                    <p class="inline-block">{{__('misc.delete')}}</p>
-                                </button>
+                                </a>
+                                <form class="inline-block flex-grow" action="{{route('edit-user-delete', $user->id)}}" method="POST">
+                                    @csrf
+                                    <button class="ml-2 py-2 w-full rounded-md shadow-sm border border-gray-100 text-red-400 inline-block">
+                                        <x-svg-o-trash class="w-4 h-4 inline-block"/>
+                                        <p class="inline-block">{{__('misc.delete')}}</p>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                         <td class="py-4 hidden sm:table-cell">13/05/2021</td>
                         <td class="text-right hidden sm:table-cell">
-                            <button class="p-2 rounded-md shadow-sm border border-gray-100 text-red-400">
+                            <a href="{{route('edit-user', $user->id)}}" class="p-2 rounded-md shadow-sm border border-gray-100 text-red-400 inline-block align-middle">
                                 <x-svg-o-pencil class="w-4 h-4"/>
-                            </button>
-                            <button class="ml-2 p-2 rounded-md shadow-sm border border-gray-100 text-red-400">
-                                <x-svg-o-trash class="w-4 h-4"/>
-                            </button>
+                            </a>
+                            <form class="inline-block align-middle" action="{{route('edit-user-delete', $user->id)}}" method="POST">
+                                @csrf
+                                <button href="#" class="ml-2 p-2 rounded-md shadow-sm border border-gray-100 text-red-400">
+                                    <x-svg-o-trash class="w-4 h-4"/>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

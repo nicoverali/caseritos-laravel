@@ -14,15 +14,6 @@ use Illuminate\Routing\Redirector;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -63,11 +54,12 @@ class ClientController extends Controller
      * Display the specified resource.
      *
      * @param ClientProfile $clientProfile
-     * @return Response
+     * @return Application|Factory|View
      */
     public function show(ClientProfile $clientProfile)
     {
-        //
+        return view('client')
+            ->with('client', $clientProfile);
     }
 
     /**
