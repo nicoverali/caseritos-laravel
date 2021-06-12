@@ -1,3 +1,5 @@
+@php use App\Http\Controllers\ProductController; @endphp
+
 @extends('layouts.app')
 
 @section('body')
@@ -41,11 +43,11 @@
                 <div class="flex w-full mt-4">
                     <div class="w-1/2 pr-4">
                         <x-label for="price" :value="__('pages/edit-product.price')"/>
-                        <x-input id="price" class="w-full" type="number" name="price" required autofocus/>
+                        <x-input id="price" class="w-full" type="number" min="1" max="{{ProductController::maxPrice()}}" name="price" required autofocus/>
                     </div>
                     <div class="w-1/2 pl-4">
                         <x-label for="stock" :value="__('pages/edit-product.stock')"/>
-                        <x-input id="stock" class="w-full" type="number" name="stock" required autofocus/>
+                        <x-input id="stock" class="w-full" type="number" min="1" max="{{ProductController::maxStock()}}" name="stock" required autofocus/>
                     </div>
                 </div>
                 <button type="submit" class="w-full py-4 mt-4 text-center text-white bg-red-400 rounded sm:w-48 hover:bg-red-500 border border-red-400">

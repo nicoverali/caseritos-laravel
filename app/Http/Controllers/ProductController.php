@@ -14,6 +14,19 @@ use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
+    private static $STOCK_MAX = 100;
+    private static $PRICE_MAX = 50000;
+
+    public static function maxStock(): int
+    {
+        return self::$STOCK_MAX;
+    }
+
+    public static function maxPrice(): int
+    {
+        return self::$PRICE_MAX;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,8 +73,8 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'picture' => 'required|image',
             'description' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'stock' => 'required|numeric|gt:0'
+            'price' => 'required|numeric|gt:0|lte:'.self::$PRICE_MAX,
+            'stock' => 'required|numeric|gt:0|lte:'.self::$STOCK_MAX,
         ]);
 
 
