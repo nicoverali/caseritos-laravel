@@ -14,7 +14,7 @@
                     {{ __('misc.cancel') }}
                 </x-button>
             </a>
-            <form method="POST" action="{{ route('become-a-seller') }}" class="">
+            <form method="POST" action="{{ route('request-admin-save') }}">
             @csrf
                 <x-button class="ml-3">
                     {{ __('misc.accept') }}

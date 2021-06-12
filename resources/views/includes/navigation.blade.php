@@ -63,7 +63,7 @@
 
                     <x-slot name="content">
                         @unlessrole('admin')
-                        <x-dropdown-link :href="route('logout')">
+                        <x-dropdown-link :href="route('request-admin')">
                             {{ __('navigation.request_admin') }}
                         </x-dropdown-link>
                         @endunlessrole
@@ -144,7 +144,7 @@
                 </x-responsive-nav-link>
                 @endunlessrole
                 @unlessrole('admin')
-                <x-responsive-nav-link href="#">
+                <x-responsive-nav-link href="{{route('request-admin')}}">
                     {{ __('navigation.request_admin') }}
                 </x-responsive-nav-link>
                 @endunlessrole
