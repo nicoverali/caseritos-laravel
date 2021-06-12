@@ -22,7 +22,7 @@ class OrderController extends Controller
     {
         $client = $request->user()->clientProfile;
         return view('orders')
-            ->with('orders', $client->orders);
+            ->with('orders', $client->orders()->with('product', 'product.owner')->get());
     }
 
     /**
@@ -34,7 +34,7 @@ class OrderController extends Controller
     {
         $seller = $request->user()->sellerProfile;
         return view('sales')
-            ->with('orders', $seller->orders);
+            ->with('orders', $seller->orders()->with('product')->get());
     }
 
     public function showClient(Order $order, Request $request){

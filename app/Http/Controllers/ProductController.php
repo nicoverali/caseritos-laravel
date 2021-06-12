@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('home')
-            ->with('products', Product::limit(15)->get());
+            ->with('products', Product::with('owner')->get());
     }
 
     /**
