@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ImageFileHelper;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -36,6 +37,8 @@ class ProductController extends Controller
     {
         return view('home', [
             'products' => Product::search($request['search'])
+                ->exceptOwnedBy($request->user())
+                ->withStock()
                 ->latest()
                 ->with('owner')
                 ->get(),
@@ -160,8 +163,13 @@ class ProductController extends Controller
             'stock' => 'required|numeric|gt:0'
         ]);
 
+        if ($attributes['picture']??false){
+            $imageFile = $attributes['picture'];
+            $attributes['picture'] = ImageFileHelper::imageToBase64($imageFile);
+            $attributes['thumbnail'] = ImageFileHelper::thumbnail($imageFile);
+        }
         $product->update($attributes);
-        return redirect()->back()->with('product', $product);
+        return redirect(route('product', $product->id));
     }
 
     /**
