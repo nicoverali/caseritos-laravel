@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -63,15 +64,27 @@ class ProductController extends Controller
             'stock' => 'required|numeric|gt:0'
         ]);
 
-        $attributes['picture'] = $this->imageToBase64($attributes['picture']);
+
+        $imageFile = $attributes['picture'];
+        $attributes['picture'] = $this->imageToBase64($imageFile);
+        $attributes['thumbnail'] = $this->thumbnail($imageFile);
         $request->user()->sellerProfile->products()->create($attributes);
         return redirect(route('products'));
     }
 
-    private function imageToBase64($image){
-        $type = $image->getMimeType();
-        $picture = utf8_encode(base64_encode(file_get_contents($image)));
+    private function imageToBase64($imageFile): string
+    {
+        $type = $imageFile->getMimeType();
+        $picture = utf8_encode(base64_encode(file_get_contents($imageFile)));
         return "data:$type;base64,$picture";
+    }
+
+    private function thumbnail($imageFile): string
+    {
+        return Image::make($imageFile)
+            ->resize(512, 512, function($constraint) {$constraint->aspectRatio();})
+            ->encode('data-url', 80)
+            ->getEncoded();
     }
 
     /**
