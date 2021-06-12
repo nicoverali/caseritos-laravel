@@ -28,7 +28,7 @@ class ProductFactory extends Factory
 
         return [
             'name' => $productFake['description'] ?? $this->faker->streetName,
-            'description' => $productFake['alt_description'],
+            'description' => $productFake['alt_description'] ?? '',
             'picture' => $productFake['image'],
             'thumbnail' => $productFake['thumbnail'],
             'stock' => $this->faker->numberBetween(0,100),

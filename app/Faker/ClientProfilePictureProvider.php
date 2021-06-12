@@ -25,6 +25,16 @@ class ClientProfilePictureProvider extends Base
         $url = $parsedName
             ? "https://ui-avatars.com/api/?name=$parsedName&background=000000&color=fff&size=$size"
             : "https://ui-avatars.com/api/?background=000000&color=fff&size=$size";
-        return base64_encode(file_get_contents($url));
+
+        $image = null;
+        while (!$image){
+            try {
+                $image = base64_encode(file_get_contents($url));
+            } catch (\ErrorException $error){
+                printf($error);
+                printf("Retrying...");
+            }
+        }
+        return $image;
     }
 }
