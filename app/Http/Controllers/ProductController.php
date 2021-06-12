@@ -78,7 +78,7 @@ class ProductController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required|max:255',
-            'picture' => 'required|image',
+            'picture' => 'required|image|max:10240',
             'description' => 'required',
             'price' => 'required|numeric|gt:0|lte:'.self::$PRICE_MAX,
             'stock' => 'required|numeric|gt:0|lte:'.self::$STOCK_MAX,

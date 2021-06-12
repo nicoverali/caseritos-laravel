@@ -41,7 +41,7 @@ class ClientController extends Controller
         $user = $request->user();
         if (!$user->hasRole('client')){
             $attributes = $request->validate([
-                'profile-picture' => 'nullable|image',
+                'profile-picture' => 'nullable|image|max:10240',
                 'phone' => 'required|max:255',
                 'address' => 'required|max:255',
             ]);

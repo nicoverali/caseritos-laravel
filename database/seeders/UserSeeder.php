@@ -61,9 +61,12 @@ class UserSeeder extends Seeder
     }
 
     private function createUsers($attributes, $cant, $roles){
+        printf("Creating $cant users\n");
+        $created = 0;
         $attributes = (new Collection($attributes))->whereNotNull()->toArray();
         $users = User::factory($cant)->create($attributes);
         foreach ($users as $user) {
+            printf("Created $created/$cant\n");
             foreach ($roles as $role){
                 $user->assignRole($role);
                 switch ($role){
@@ -78,6 +81,7 @@ class UserSeeder extends Seeder
                     case 'admin': $user->assignAdminProfile(AdminProfile::factory()->create());
                 }
             }
+            $created++;
         }
     }
 }
