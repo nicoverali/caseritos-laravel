@@ -25,8 +25,8 @@ class ProductFactory extends Factory
         $this->faker->addProvider(FoodPictureProvider::class);
         $productFake = $this->faker->foodPicture();
         return [
-            'name' => $this->faker->domainName(),
-            'description' => $this->faker->words(20, true),
+            'name' => $productFake['description'] ?? $this->faker->streetName,
+            'description' => $productFake['alt_description'],
             'picture' => $productFake['image'],
             'thumbnail' => $productFake['thumbnail'],
             'stock' => $this->faker->numberBetween(0,100),
