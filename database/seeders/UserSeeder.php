@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Hash;
 class UserSeeder extends Seeder
 {
 
-    private $KNOWN_CLIENT_EMAIL = "pepe@cliente.com";
-    private $KNOWN_SELLER_EMAIL = "pepe@vendedor.com";
-    private $KNOWN_ADMIN_EMAIL = "pepe@admin.com";
-    private $KNOWN_SUPER_EMAIL = "pepe@super.com";
+    private $KNOWN_CLIENT_EMAIL = "cliente@caseritos.com";
+    private $KNOWN_SELLER_EMAIL = "vendedor@caseritos.com";
+    private $KNOWN_ADMIN_EMAIL = "admin@caseritos.com";
+    private $KNOWN_SUPER_EMAIL = "super@caseritos.com";
     private $KNOWN_PASSWORD = "secret";
 
     private $faker;
