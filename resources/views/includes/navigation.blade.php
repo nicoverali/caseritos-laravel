@@ -39,7 +39,7 @@
             <!-- Right side -->
             <div class="hidden md:flex md:items-center md:ml-6">
                 @unlessrole('seller')
-                <a href="#" class="text-red-400 hover:text-red-600 transition-colors">
+                <a href="{{route('become-a-seller')}}" class="text-red-400 hover:text-red-600 transition-colors">
                     <div class="mr-6 p-2">
                         <x-svg-o-light-bulb class="inline-block stroke-current w-6 h -6 -mt-1"/>
                         <p class="inline-block ">{{__('navigation.sell_products')}}</p>
@@ -136,7 +136,7 @@
 
             <div class="mt-3 space-y-1">
                 @unlessrole('seller')
-                <x-responsive-nav-link href="#">
+                <x-responsive-nav-link href="{{route('become-a-seller')}}">
                     <div class="text-red-400 hover:text-red-600 transition-colors">
                         <p class="inline-block ">{{__('navigation.sell_products')}}</p>
                         <x-svg-o-light-bulb class="inline-block stroke-current w-6 h -6 -mt-1"/>

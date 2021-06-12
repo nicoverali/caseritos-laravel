@@ -10,14 +10,14 @@
         <x-svg-o-light-bulb class="text-center block w-6 h-6 text-red-400"/>
         <p class="mt-4">{{__('pages/register-seller.description')}}</p>
 
-        <form method="POST" action="{{ route('become-a-seller') }}" class="mt-4">
+        <form method="POST" action="{{ route('become-a-seller-save') }}" class="mt-4">
         @csrf
 
         <!-- Store name -->
             <div>
-                <x-label for="store-name" :value="__('pages/register-seller.store_name')" />
+                <x-label for="store_name" :value="__('pages/register-seller.store_name')" />
 
-                <x-input id="store-name" class="block mt-1 w-full" type="text" name="store-name" :value="old('store-name')" required autofocus />
+                <x-input id="store_name" class="block mt-1 w-full" type="text" name="store_name" :value="old('store_name')" required autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
