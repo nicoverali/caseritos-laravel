@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Profiles\AdminController;
+use App\Http\Controllers\Profiles\ClientController;
 use App\Http\Controllers\Profiles\SellerController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/register-client', function () {
-    return view('register-client');
-})->name('register-client');
+Route::get('/register-client', [ClientController::class, 'create'])
+    ->name('register-client');
+
+Route::post('/register-client', [ClientController::class, 'store'])
+    ->name('register-client-save');
 
 Route::get('/become-a-seller', [SellerController::class, 'create'])
     ->name('become-a-seller');

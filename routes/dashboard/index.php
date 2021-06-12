@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('role:client')
+Route::middleware('resumeRegisterIfNotClient')
     ->group(__DIR__ . '/client.php');
 
 Route::middleware('role:seller')

@@ -4,15 +4,12 @@
 
     <x-auth-card>
 
-{{--        <h1 class="mt-2 text-4xl font-semibold text-center">Welcome !</h1>--}}
-        <form method="POST" action="{{ route('become-a-seller') }}" class="mt-4">
+        <form method="POST" action="{{ route('register-client-save') }}" class="mt-4">
         @csrf
             <div class="block mx-auto text-center relative">
                 <img class="mx-auto h-40" src="{{asset('images/user-generic.png')}}" alt="">
                 <label for="img" class="p-4 rounded-full bg-red-400 text-white relative -top-12 left-16 inline-block cursor-pointer">
-{{--                    <button class="p-4 rounded-full bg-red-400 text-white relative -top-12 left-16">--}}
                         <x-svg-s-upload class="w-5 h-5"/>
-{{--                    </button>--}}
                 </label>
                 <input class="hidden" type="file" id="img" name="img" accept="image/*">
             </div>

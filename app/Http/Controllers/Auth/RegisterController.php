@@ -46,13 +46,10 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('client');
-        $user->assignClientProfile(ClientProfile::factory()->create());
-
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('register-client'));
     }
 }
