@@ -32,7 +32,7 @@ class ProductFactory extends Factory
             'picture' => $productFake['image'],
             'thumbnail' => $productFake['thumbnail'],
             'stock' => $this->faker->numberBetween(0,100),
-            'price' => $this->faker->numberBetween(100,1500),
+            'price' => $this->faker->numberBetween(100,1000),
             'created_at' => $creationDate,
             'updated_at' => $this->faker->dateTimeBetween($creationDate),
         ];
