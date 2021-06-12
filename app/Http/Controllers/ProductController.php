@@ -32,12 +32,15 @@ class ProductController extends Controller
      *
      * @return Application|Factory|View|Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home')
-            ->with('products', Product::with('owner')
+        return view('home', [
+            'products' => Product::search($request['search'])
                 ->latest()
-                ->get());
+                ->with('owner')
+                ->get(),
+            'search' => $request['search']
+        ]);
     }
 
     /**
