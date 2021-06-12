@@ -18,7 +18,6 @@ trait CascadeSoftDelete {
     protected static function bootCascadeSoftDelete()
     {
         static::deleting(function ($model) {
-            printf("I'm Deleting from model");
 //            $model->validateCascadeSoftDelete();
             $model->runCascadingDeletes();
         });
