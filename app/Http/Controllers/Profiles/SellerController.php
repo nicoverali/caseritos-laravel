@@ -44,6 +44,6 @@ class SellerController extends Controller
             $user->assignSellerProfile(SellerProfile::create($attributes));
         }
 
-        return redirect(route('home'));
+        return redirect(route('create-product'));
     }
 }
