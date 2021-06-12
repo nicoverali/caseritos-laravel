@@ -21,9 +21,12 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        $creationDate = $this->faker->dateTimeThisYear();
         return [
             'quantity' => $this->faker->numberBetween(1,5),
             'price' => $this->faker->numberBetween(100,1500),
+            'created_at' => $creationDate,
+            'updated_at' => $this->faker->dateTimeBetween($creationDate),
         ];
     }
 }

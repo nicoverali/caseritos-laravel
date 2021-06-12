@@ -65,13 +65,13 @@ class UserSeeder extends Seeder
         $users = User::factory($cant)->create($attributes);
         foreach ($users as $user) {
             foreach ($roles as $role){
-                $clientAttr = [
-                    'picture' => $this->faker->profilePicture($user->name),
-                    'thumbnail' => $this->faker->profileThumbnail($user->name),
-                ];
                 $user->assignRole($role);
                 switch ($role){
-                    case 'client': $user->assignClientProfile(ClientProfile::factory()->create($clientAttr));
+                    case 'client':
+                        $user->assignClientProfile(ClientProfile::factory()->create([
+                            'picture' => $this->faker->profilePicture($user->name),
+                            'thumbnail' => $this->faker->profileThumbnail($user->name),
+                        ]));
                         break;
                     case 'seller': $user->assignSellerProfile(SellerProfile::factory()->create());
                         break;

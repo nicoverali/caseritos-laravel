@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Faker\FoodPictureProvider;
+use App\Faker\FakeProductProvider;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,8 +22,10 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $this->faker->addProvider(FoodPictureProvider::class);
-        $productFake = $this->faker->foodPicture();
+        $this->faker->addProvider(FakeProductProvider::class);
+        $productFake = $this->faker->product();
+        $creationDate = $this->faker->dateTimeThisYear();
+
         return [
             'name' => $productFake['description'] ?? $this->faker->streetName,
             'description' => $productFake['alt_description'],
@@ -31,6 +33,8 @@ class ProductFactory extends Factory
             'thumbnail' => $productFake['thumbnail'],
             'stock' => $this->faker->numberBetween(0,100),
             'price' => $this->faker->numberBetween(100,1500),
+            'created_at' => $creationDate,
+            'updated_at' => $this->faker->dateTimeBetween($creationDate),
         ];
     }
 }

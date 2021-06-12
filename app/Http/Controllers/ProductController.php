@@ -35,7 +35,9 @@ class ProductController extends Controller
     public function index()
     {
         return view('home')
-            ->with('products', Product::with('owner')->get());
+            ->with('products', Product::with('owner')
+                ->latest()
+                ->get());
     }
 
     /**
@@ -48,7 +50,9 @@ class ProductController extends Controller
     {
         $seller = $request->user()->sellerProfile;
         return view('products')
-            ->with('products', $seller->products);
+            ->with('products', $seller->products()
+                ->latest('updated_at')
+                ->get());
     }
 
     /**

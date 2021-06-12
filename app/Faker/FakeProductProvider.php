@@ -5,7 +5,7 @@ namespace App\Faker;
 use Faker\Provider\Base;
 use Illuminate\Database\Eloquent\Collection;
 
-class FoodPictureProvider extends Base
+class FakeProductProvider extends Base
 {
     private static $FAKES_PATH = 'img/faker/food/';
 
@@ -19,7 +19,7 @@ class FoodPictureProvider extends Base
             ->map(function ($file) { return json_decode(file_get_contents($file), true); });
     }
 
-    public static function foodPicture()
+    public static function product()
     {
         if (!self::$fakes){
             self::getFakes();
