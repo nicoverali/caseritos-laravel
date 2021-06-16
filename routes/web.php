@@ -15,10 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')
+    ->group(__DIR__ . '/dashboard/index.php');
 
-require __DIR__.'/auth.php';
+require __DIR__.'/auth/index.php';

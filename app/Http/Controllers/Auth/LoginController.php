@@ -32,6 +32,10 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
+        if (!$request->user()->hasRole('client')){
+            return redirect(route('register-client'));
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

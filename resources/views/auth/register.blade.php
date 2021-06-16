@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app-bg')
 
 @section('body')
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a class="inline-block text-center" href="/">
+                <x-application-logo full class="h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
 

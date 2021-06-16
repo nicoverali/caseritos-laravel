@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Profiles\AdministratorProfile;
+use App\Models\Profiles\AdminProfile;
 use App\Models\Profiles\ClientProfile;
+use App\Models\Profiles\HasProfiles;
 use App\Models\Profiles\SellerProfile;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -32,6 +33,12 @@ class User extends Authenticatable
     use HasRoles {
         roles as protected traitRoles;
     }
+
+    use HasProfiles;
+
+    use SoftDeletes, CascadeSoftDelete;
+    protected $cascadeDeletes = ['clientProfile', 'sellerProfile'];
+
 
     /**
      * The attributes that are mass assignable.
@@ -90,7 +97,8 @@ class User extends Authenticatable
      */
     public function clientProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(ClientProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(ClientProfile::class, ...self::PROFILES_REL_ARGS)
+            ->where('model_has_roles.role_profile_type', ClientProfile::class);
     }
 
     /**
@@ -100,7 +108,8 @@ class User extends Authenticatable
      */
     public function sellerProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(SellerProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(SellerProfile::class, ...self::PROFILES_REL_ARGS)
+                ->where('model_has_roles.role_profile_type', SellerProfile::class);
     }
 
     /**
@@ -110,7 +119,9 @@ class User extends Authenticatable
      */
     public function adminProfile(): HasOneThrough
     {
-        return $this->hasOneThrough(AdministratorProfile::class, ...self::PROFILES_REL_ARGS);
+        return $this->hasOneThrough(AdminProfile::class, ...self::PROFILES_REL_ARGS)
+            ->where('model_has_roles.role_profile_type', AdminProfile::class);
+
     }
 
 
