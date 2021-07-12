@@ -7,4 +7,5 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'register' => 'Register',
+    'go_back' => 'Go back',
 ];
