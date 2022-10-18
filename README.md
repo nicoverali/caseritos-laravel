@@ -32,3 +32,13 @@ Some highlights
 This version uses fake data as well as preset users.
 
 **You can visit the demo version at [Caseritos demo version](https://caseritos.herokuapp.com/)**
+
+## Video demo
+
+At the end of this project we were requested to make a video showing what we made and explaining all the features in our app.
+
+<a href="https://www.youtube.com/watch?v=LxOUrKprCls">
+    <p align="center">
+    <img src="https://i.postimg.cc/W4qZLHcQ/Screen-Shot-2022-10-18-at-14-53-48.png"/>
+    </p>
+</a>
